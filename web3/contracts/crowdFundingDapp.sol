@@ -2,7 +2,7 @@
 pragma solidity ^0.8.9;
 
 contract crowdFundingDapp {
-    struct Campaign {     //liike an object in JS
+    struct Campaign {     //like an object in JS
         address owner;
         string title;
         string description;
