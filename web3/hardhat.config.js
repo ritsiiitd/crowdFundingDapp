@@ -7,7 +7,7 @@ module.exports = {
       hardhat: {},
       goerli: {
         url: 'https://rpc.ankr.com/eth_goerli',
-        accounts: [`0x${process.env.PRIVATE_KEY}`]//account used to deploy smart contract
+        accounts: [`0x${process.env.PRIVATE_KEY}`]//account used to deployy smart contract
       }
     },
     settings: {
