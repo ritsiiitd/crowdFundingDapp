@@ -2,26 +2,42 @@ import React, {useState} from 'react';
 
 import { Link, useNavigate } from 'react-router-dom';
 import { ethers } from 'ethers';
-import { money } from '../assets';
+import { createCampaign, money } from '../assets';
 import { CustomButton, FormField } from '../components';
 import { checkIfImage } from '../utils';
 
+//web3 logic
+import { useStateContext } from '../context';
 
 const CreateCampaign = () => {
   const navigate = useNavigate();//called a hook
   const [isLoading, setIsLoading] = useState(false);
+  const { createCampaign:campaignCreator } = useStateContext();
   const [form, setForm] = useState({
     name:'',
     title:'',
-    description:'',
+    description:'', 
     target:'',
     deadline:'',
     image:''
   });
 
-  const handleSubmit = (e) =>{
+  const handleSubmit = async(e) =>{
     e.preventDefault();//prevents browser to reload the page
-    console.log(form);
+    checkIfImage(form.image,async(exists) => {
+      if(exists){
+        setIsLoading(true);
+        await campaignCreator({ ...form, target: ethers.
+          utils.parseUnits(form.target, 18)})
+        setIsLoading(false);
+        navigate('/');
+      }
+      else{
+        alert("Provide valid image URL");
+        setForm({...form, image:''});
+      }
+    })
+    
   }
 
   const handleFormFieldChange = (fieldName, e) =>{//in event of inputting something in the form
@@ -36,7 +52,7 @@ const CreateCampaign = () => {
       </div>
       <div className='w-full flex justify-start items-center mt-4 p-4 bg-[#b36dfdfe] h-120px rounded-[10px]'>
             <img src={money} alt="money" className='w-[40px] h-[40px] object-contain' />
-            <h4 className='font-epilogue font-bold text-[25px] text-white ml-[20px]'>You will get 100% of the raised amount this website is p2p :3 </h4>
+            <h4 className='font-epilogue font-bold text-[25px] text-white ml-[20px]'>You will get 100% of the raised amount. This website is p2p :3 </h4>
       </div>
 
       <form onSubmit={handleSubmit} className='w-full mt-[65px] flex flex-col gap-[30px] '>
