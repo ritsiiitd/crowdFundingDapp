@@ -9,4 +9,4 @@ Your collected amount is directly transfered to your metamask wallet as soon as 
 
 Every transaction occurs using metamask extension on the browser.
 
-Tech stack : React, thirdweb, tailwindcss, metamask, ethers.js
+Tech stack : React, thirdweb, tailwindcss, metamask, ethers.js 
