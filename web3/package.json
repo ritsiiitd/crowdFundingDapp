@@ -9,7 +9,8 @@
     "hardhat": "^2.10.1"
   },
   "dependencies": {
+    "@alch/alchemy-web3": "^1.4.7",
     "@thirdweb-dev/contracts": "^3",
-    "dotenv": "^16.0.3"
+    "dotenv": "^16.3.1"
   }
 }
